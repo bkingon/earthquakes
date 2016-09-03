@@ -4,6 +4,8 @@ ruby '2.3.1'
 
 gem 'rails', '5.0.0.1'
 
+gem 'faraday'
+
 # CSS
 gem 'foundation-rails'
 gem 'slim-rails'
