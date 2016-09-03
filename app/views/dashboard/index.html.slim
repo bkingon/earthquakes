@@ -1,11 +1,39 @@
-- if @error_message
-  h5 = @error_message
-= render 'filter'
-h3 Hello index page
-h4 = "count: #{@earthquakes.count}"
-- @earthquakes.each do |quake|
-  - seconds_since_epoch_integer = quake['properties']['time'] / 1000
-  h5 = quake['properties']['place']
-  p = quake['properties']['mag']
-  p = Time.at(seconds_since_epoch_integer).to_datetime
-  p = DateTime.strptime(seconds_since_epoch_integer.to_s, '%s').strftime("%d %m %y")
+<script src="//maps.google.com/maps/api/js?v=3.23&key=AIzaSyD4wLdrBpx484oRDMIWabX5thBvt2U3enE"></script>
+<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+.row.column
+  = render 'filter'
+  .medium-8.columns
+    <div style='width: 800px;'>
+      <div id="map" style='width: 800px; height: 400px;'></div>
+    </div>
+  .medium-4.columns
+    - if @error_message
+      h5 = @error_message
+    h3 Hello index page
+    h4 = "count: #{@earthquakes.count}"
+    - @earthquakes.each do |quake|
+      - seconds_since_epoch_integer = quake['properties']['time'] / 1000
+      h5 = quake['properties']['place']
+      p = quake['properties']['mag']
+      p = Time.at(seconds_since_epoch_integer).to_datetime
+      p = DateTime.strptime(seconds_since_epoch_integer.to_s, '%s').strftime("%d %m %y")
+
+
+javascript:
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers([
+    {
+      "lat": 0,
+      "lng": 0,
+      "picture": {
+        "url": "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
+        "width":  32,
+        "height": 32
+      },
+      "infowindow": "hello!"
+    }
+  ]);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+  });

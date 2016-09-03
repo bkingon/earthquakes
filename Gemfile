@@ -5,6 +5,7 @@ ruby '2.3.1'
 gem 'rails', '5.0.0.1'
 
 gem 'faraday'
+gem 'gmaps4rails'
 
 # CSS
 gem 'foundation-rails'

@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title Earthquake History
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track'=>false
+    = csrf_meta_tags
+
+  body
+    = yield
+
+  footer
+    .grid &copy; #{Time.now.year} #{t(:site_title)} — All rights reserved.
+
+  = yield(:script)
