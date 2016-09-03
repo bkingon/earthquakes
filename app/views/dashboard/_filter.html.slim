@@ -1,13 +1,15 @@
-.row
-  = form_for '', method: :get, html: { id: :filter_params } do |f|
-    .row
-      = label_tag :starttime, 'Start Date'
-      = date_field :starttime, 'starttime'
-      = label_tag :endtime, 'End Date'
-      = date_field :endtime, 'endtime'
-      = label_tag :minmagnitude, 'Min Magnitude'
-      = text_field_tag :minmagnitude
-      
+= form_for '', method: :get, html: { id: :filter_params } do |f|
+  .medium-3.columns
+    = label_tag :starttime, 'Start Date'
+    = date_field :starttime, 'starttime'
+  .medium-3.columns
+    = label_tag :endtime, 'End Date'
+    = date_field :endtime, 'endtime'
+  .medium-3.columns
+    = label_tag :minmagnitude, 'Min Magnitude'
+    = text_field_tag :minmagnitude
+  .medium-3.columns
+  
     .form-actions
       .row style='padding-top:13px'
         .large-8.columns
