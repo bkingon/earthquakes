@@ -1,4 +1,8 @@
+- if @error_message
+  h5 = @error_message
+= render 'filter'
 h3 Hello index page
+h4 = "count: #{@earthquakes.count}"
 - @earthquakes.each do |quake|
   - seconds_since_epoch_integer = quake['properties']['time'] / 1000
   h5 = quake['properties']['place']

@@ -1,0 +1,15 @@
+.row
+  = form_for '', method: :get, html: { id: :filter_params } do |f|
+    .row
+      = label_tag :starttime, 'Start Date'
+      = date_field :starttime, 'starttime'
+      = label_tag :endtime, 'End Date'
+      = date_field :endtime, 'endtime'
+      = label_tag :minmagnitude, 'Min Magnitude'
+      = text_field_tag :minmagnitude
+      
+    .form-actions
+      .row style='padding-top:13px'
+        .large-8.columns
+          = submit_tag 'Filter'
+          / = link_to 'Clear Filters', shipper_asks_path, class: 'small button left'
