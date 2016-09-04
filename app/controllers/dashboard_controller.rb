@@ -27,6 +27,29 @@ class DashboardController < ApplicationController
     else
       json_response = JSON.parse(response.body)['features']
       @earthquakes = json_response.select { |e| e['properties']['mag'] > 3 }
+      @hash = []
+      @earthquakes.each do |quake|
+        next if quake['geometry']['coordinates'][0].nil? || quake['geometry']['coordinates'][1].nil?
+        hash = {}
+        hash[:lat] = quake['geometry']['coordinates'][1]
+        hash[:lng] = quake['geometry']['coordinates'][0]
+        hash[:infowindow] = quake['properties']['mag'].to_s
+        hash[:mag] = quake['properties']['mag'].to_s
+        hash[:name] = quake['properties']['place']
+        hash[:time] = Time.at(quake['properties']['time'] / 1000).to_datetime
+        @hash << hash
+      end
+      # @hash = Gmaps4rails.build_markers(@earthquakes) do |quake, marker|
+        # next if quake['geometry']['coordinates'][0].nil? || quake['geometry']['coordinates'][1].nil?
+        # hash = {}
+        # hash[:lat] = quake['geometry']['coordinates'][1]
+        # hash[:lng] = quake['geometry']['coordinates'][0]
+        # hash[:infowindow] = quake['properties']['mag'].to_s
+        # marker.lat quake['geometry']['coordinates'][1]
+        # marker.lng quake['geometry']['coordinates'][0]
+        # marker.infowindow quake['properties']['mag'].to_s
+        # hash
+      # end
     end
   end
 

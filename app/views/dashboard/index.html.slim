@@ -6,32 +6,32 @@
 .medium-10.columns 
   div style='width: 100%;'
     div id="map" style='width: 100%; min-height: 92vh; position: inline'
-.medium-2.columns style='max-height: 92vh; overflow: hidden'
+.medium-2.columns style='max-height: 92vh; overflow: scroll'
   h3 Hello index page
   h4 = "count: #{@earthquakes.count}"
-  - @earthquakes.each do |quake|
-    - seconds_since_epoch_integer = quake['properties']['time'] / 1000
-    h5 = quake['properties']['place']
-    p = quake['properties']['mag']
-    p = Time.at(seconds_since_epoch_integer).to_datetime
-    p = DateTime.strptime(seconds_since_epoch_integer.to_s, '%s').strftime("%d %m %y")
+  div id='sidebar_container'
+  / - @earthquakes.each do |quake|
+  /   - seconds_since_epoch_integer = quake['properties']['time'] / 1000
+  /   h5 = quake['properties']['place']
+  /   p = quake['properties']['mag']
+  /   p = Time.at(seconds_since_epoch_integer).to_datetime
+  /   p = DateTime.strptime(seconds_since_epoch_integer.to_s, '%s').strftime("%d %m %y")
 
 
 javascript:
   handler = Gmaps.build('Google');
   handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-  markers = handler.addMarkers([
-    {
-      "lat": 0,
-      "lng": 0,
-      "picture": {
-        "url": "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
-        "width":  32,
-        "height": 32
-      },
-      "infowindow": "hello!"
-    }
-  ]);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
+    json_array = #{{ @hash.to_json }}
+    console.log(json_array);
+    markers = handler.addMarkers(json_array);
+    
+    markers = handler.addMarkers(json_array);
+    
+    _.each(json_array, function(json, index){
+      json.marker = markers[index];
+    });
+
+    createSidebar(json_array);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
   });
