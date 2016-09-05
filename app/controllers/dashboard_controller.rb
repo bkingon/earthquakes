@@ -21,6 +21,10 @@ class DashboardController < ApplicationController
   end
 
   def min_magnitude
-    params['filtered_params'].present? ? params['filtered_params']['minmagnitude'] : 0
+    params['filtered_params'].present? ? sanitize_number(params['filtered_params']['minmagnitude']) : 0
+  end
+
+  def sanitize_number(string)
+    string.to_i if Float(string) rescue 0
   end
 end

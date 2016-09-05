@@ -4,7 +4,7 @@ RSpec.describe DashboardController, type: :controller do
   describe 'GET index' do
     it 'renders the index page with filter params passed in' do
       VCR.use_cassette 'custom_filter_query' do
-        get :index, params: { filtered_params: {starttime: '2016-08-01', endtime: '2016-09-03', minmagnitude: 7 } }
+        get :index, params: { filtered_params: { starttime: '2016-08-01', endtime: '2016-09-03', minmagnitude: 7 } }
       end
 
       expect(response).to render_template :index
@@ -21,6 +21,17 @@ RSpec.describe DashboardController, type: :controller do
 
       expect(response).to render_template :index
       expect(assigns(:hash).count).to eq 534
+      expect(response.status).to eq(200)
+    end
+
+    it 'sanitizes a non numeric value for min magnitude filter' do
+      VCR.use_cassette 'non_numeric_value_for_magnitude' do
+        get :index, params: { filtered_params: { starttime: '2016-09-01', endtime: '2016-09-02', minmagnitude: 'ab' } }
+      end
+
+      expect(response).to render_template :index
+      expect(assigns(:hash).count).to eq 265
+      expect(assigns(:filtered_params)[:minmagnitude]).to eq 0
       expect(response.status).to eq(200)
     end
   end
