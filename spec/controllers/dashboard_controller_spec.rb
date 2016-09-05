@@ -20,7 +20,7 @@ RSpec.describe DashboardController, type: :controller do
       end
 
       expect(response).to render_template :index
-      expect(assigns(:hash).count).to eq 534
+      expect(assigns(:hash).count).to eq 695
       expect(response.status).to eq(200)
     end
 
@@ -43,7 +43,7 @@ RSpec.describe DashboardController, type: :controller do
 
       expect(flash[:alert]).to eq 'Something went wrong with your search, please try again.'
       expect(response).to render_template :index
-      expect(assigns(:hash).count).to eq 231
+      expect(assigns(:hash).count).to eq 392
       expect(response.status).to eq(200)
     end
 
@@ -57,7 +57,7 @@ RSpec.describe DashboardController, type: :controller do
 
       expect(flash[:alert]).to eq 'Search parameters exceed 20,000 results. Please modify your search parameters.'
       expect(response).to render_template :index
-      expect(assigns(:hash).count).to eq 231
+      expect(assigns(:hash).count).to eq 392
       expect(response.status).to eq(200)
     end
   end

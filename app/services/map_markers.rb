@@ -5,14 +5,15 @@ class MapMarkers
 
   def call
     earthquakes.map do |quake|
-      next if latitude.nil? || longitude.nil?
+      marker_attr = MapMarkerAttributes.new(quake)
+      next if marker_attr.latitude.nil? || marker_attr.longitude.nil?
       {
-        lat: latitude,
-        lng: longitude,
-        infowindow: "#{place}</br>Magnitude: #{mag}</br>When: #{time(quake)}",
-        mag: magnitude,
-        name: place,
-        time: time(quake)
+        lat: marker_attr.latitude,
+        lng: marker_attr.longitude,
+        infowindow: "#{marker_attr.place}</br>Magnitude: #{marker_attr.magnitude}</br>When: #{marker_attr.time}",
+        mag: marker_attr.magnitude,
+        name: marker_attr.place,
+        time: marker_attr.time
       }
     end
   end
@@ -20,24 +21,4 @@ class MapMarkers
   private
 
   attr_accessor :earthquakes
-
-  def time(quake)
-    Time.at(quake['properties']['time'] / 1000).to_datetime.strftime('%B %d, %Y - %I:%M%p')
-  end
-
-  def latitude
-    quake['geometry']['coordinates'][1]
-  end
-
-  def longitude
-    quake['geometry']['coordinates'][0]
-  end
-
-  def magnitude
-    quake['properties']['mag'].to_s
-  end
-
-  def place
-    quake['properties']['place']
-  end
 end
