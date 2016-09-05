@@ -2,9 +2,9 @@ function createSidebarLi(json){
   return (
     "<div class='quake_item'>" +
       "<a>" + json.name + "</a>" +
-      "<div class='stat'>magnitude: " + json.mag + '</div>' +
-      "<div class='stat'>long: " + json.lng + '</div>' +
-      "<div class='stat'>lat: " + json.lat + '</div>' +
+      "<div class='stat'>Magnitude: " + json.mag + '</div>' +
+      "<div class='stat'>Longitude: " + json.lng + '</div>' +
+      "<div class='stat'>Latitude: " + json.lat + '</div>' +
       "<div class='stat'>When: " + json.time + '</div>' +
     "</div>"
   );
