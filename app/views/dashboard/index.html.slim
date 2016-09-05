@@ -8,7 +8,7 @@
     div id="map" style='width: 100%; min-height: 92vh; position: inline'
 .medium-2.columns style='max-height: 92vh; overflow: scroll'
   h3 Hello index page
-  h4 = "count: #{@earthquakes.count}"
+  h4 = "count: #{@hash.count}"
   div id='sidebar_container'
   / - @earthquakes.each do |quake|
   /   - seconds_since_epoch_integer = quake['properties']['time'] / 1000
@@ -22,9 +22,6 @@ javascript:
   handler = Gmaps.build('Google');
   handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
     json_array = #{{ @hash.to_json }}
-    console.log(json_array);
-    markers = handler.addMarkers(json_array);
-    
     markers = handler.addMarkers(json_array);
     
     _.each(json_array, function(json, index){

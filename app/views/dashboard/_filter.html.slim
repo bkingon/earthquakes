@@ -1,13 +1,13 @@
-= form_for '', method: :get, html: { id: :filter_params } do |f|
+= form_for 'filtered_params', method: :get, html: { id: :filter_params } do |f|
   .medium-3.columns
     = label_tag :starttime, 'Start Date'
-    = date_field :starttime, 'starttime'
+    = f.date_field :starttime, value: @filtered_params[:starttime]
   .medium-3.columns
     = label_tag :endtime, 'End Date'
-    = date_field :endtime, 'endtime'
+    = f.date_field :endtime, value: @filtered_params[:endtime]
   .medium-3.columns
     = label_tag :minmagnitude, 'Min Magnitude'
-    = text_field_tag :minmagnitude
+    = f.text_field :minmagnitude, value: @filtered_params[:minmagnitude]
   .medium-3.columns
   
     .form-actions
