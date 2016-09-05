@@ -1,0 +1,6 @@
+- if flash
+  - flash.each do |name, message|
+    div class="alert--#{name}" data-alert='' data-closable=''
+      .alert__container
+        = content_tag :button, '&times;'.html_safe, type: 'button', class: 'close-button', data: {close: ""}
+        = simple_format message
