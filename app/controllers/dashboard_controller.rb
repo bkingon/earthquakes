@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
 
     @filtered_params = {starttime: start_time.to_date.strftime("%Y-%m-%d"), endtime: end_time.to_date.strftime("%Y-%m-%d"), minmagnitude: min_magnitude}
     @hash = MapMarkers.new(json_earthquakes).call
-    flash[:alert] = @error_message
+    flash[:alert] = @error_message if @error_message
   end
 
   private

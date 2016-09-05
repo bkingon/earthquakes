@@ -9,10 +9,10 @@ class MapMarkers
       {
         lat: quake['geometry']['coordinates'][1],
         lng: quake['geometry']['coordinates'][0],
-        infowindow: quake['properties']['mag'].to_s,
+        infowindow: "#{quake['properties']['place']}</br>Magnitude: #{quake['properties']['mag'].to_s}</br>When: #{time(quake)}",
         mag: quake['properties']['mag'].to_s,
         name: quake['properties']['place'],
-        time: Time.at(quake['properties']['time'] / 1000).to_datetime
+        time: time(quake)
       }
     end
   end
@@ -20,4 +20,8 @@ class MapMarkers
   private
 
   attr_accessor :earthquakes
+
+  def time(quake)
+    Time.at(quake['properties']['time'] / 1000).to_datetime.strftime('%B %d, %Y - %I:%M%p')
+  end
 end
