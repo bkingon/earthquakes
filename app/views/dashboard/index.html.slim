@@ -2,20 +2,13 @@
 <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
 .medium-10.columns 
   = render 'filter'
-  div style='width: 100%;'
-    div id="map" style='width: 100%; min-height: 92vh; position: inline'
-.medium-2.columns style='max-height: 92vh; overflow: scroll'
+  .map-container 
+    #map 
+.medium-2.columns.sidebar-container 
   h3 Earthquakes
   h6 = "Found: #{@hash.count}"
   hr
   div id='sidebar_container'
-  / - @earthquakes.each do |quake|
-  /   - seconds_since_epoch_integer = quake['properties']['time'] / 1000
-  /   h5 = quake['properties']['place']
-  /   p = quake['properties']['mag']
-  /   p = Time.at(seconds_since_epoch_integer).to_datetime
-  /   p = DateTime.strptime(seconds_since_epoch_integer.to_s, '%s').strftime("%d %m %y")
-
 
 javascript:
   handler = Gmaps.build('Google');
