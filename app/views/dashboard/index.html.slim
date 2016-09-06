@@ -1,21 +1,21 @@
 <script src="//maps.google.com/maps/api/js?v=3.23&key=#{ENV['GOOGLE_MAPS_API_KEY']}"></script>
 <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
-.medium-10.columns 
+.medium-10.columns
   = render 'filter'
-  .map-container 
-    #map 
-.medium-2.columns.sidebar-container 
+  .map-container
+    #map
+.medium-2.columns.sidebar-container
   h3 Earthquakes
-  h6 = "Found: #{@hash.count}"
+  h6 = "Found: #{@map_markers_hash.count}"
   hr
   div id='sidebar_container'
 
 javascript:
   handler = Gmaps.build('Google');
   handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    json_array = #{{ @hash.to_json }}
+    json_array = #{{ @map_markers_hash.to_json }}
     markers = handler.addMarkers(json_array);
-    
+
     _.each(json_array, function(json, index){
       json.marker = markers[index];
     });

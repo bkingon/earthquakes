@@ -14,7 +14,7 @@ RSpec.describe DashboardController, type: :controller do
 
     it 'uses default filter values if no filter params are passed in' do
       allow_any_instance_of(Date).to receive(:yesterday).and_return(Date.parse('2016-09-03'))
-      allow_any_instance_of(Date).to receive(:today).and_return(Date.parse('2016-09-04'))
+      allow_any_instance_of(Date).to receive(:current).and_return(Date.parse('2016-09-04'))
       VCR.use_cassette 'default_root_result' do
         get :index, params: {}
       end
