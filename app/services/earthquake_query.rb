@@ -4,11 +4,14 @@ class EarthquakeQuery
   end
 
   def call
-    connection = EarthquakeApi.new.call
-    connection.get '/fdsnws/event/1/query', query_params
+    connection = EarthquakeApi.new
+    connection.get '/fdsnws/event/1/query', filter_params
   end
 
   private
-
   attr_accessor :query_params
+
+  def filter_params
+    {format: 'geojson', starttime: query_params.start_time, endtime: query_params.end_time, minmagnitude: query_params.min_magnitude}
+  end
 end
