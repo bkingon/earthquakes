@@ -1,24 +1,17 @@
-# README
+# Earthquakes
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app allows the user to query the USGS Earthquakes database. The results are then placed into  Google Maps view, and markers are placed to identify the locations of where earthquakes have taken place.
 
-Things you may want to cover:
+Demo App: https://earthquakes-history.herokuapp.com
 
-* Ruby version
+### Details:
+* Ruby version: 2.3.1
+* Rails version: 5.0.0.1
+* Database: None
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Installation
+* Clone the app: `git clone git@github.com:bkingon/earthquakes.git`
+* `bundle install`
+* Add a Google Maps API key to your .env file: `GOOGLE_MAPS_API_KEY=[YOU API KEY]`
+  * Get Google Maps API key [here](https://developers.google.com/maps/documentation/javascript/reference)
+* Run the server: `rails s`
