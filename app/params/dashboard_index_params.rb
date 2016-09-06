@@ -11,6 +11,11 @@ class DashboardIndexParams
     @params = params
   end
 
+  def ==(other)
+    other.instance_of?(self.class) &&
+      other.params == params
+  end
+
   def start_time
     params['filtered_params']['starttime']
   end
@@ -23,7 +28,7 @@ class DashboardIndexParams
     params['filtered_params']['minmagnitude'].to_i
   end
 
-  private
+  protected
   attr_reader :params
 
   private_class_method
@@ -32,7 +37,10 @@ class DashboardIndexParams
   end
 end
 
-class NullDashboardIndexParams
+class NullDashboardIndexParams < DashboardIndexParams
+  def initialize
+  end
+
   def start_time
     Date.yesterday.to_s
   end

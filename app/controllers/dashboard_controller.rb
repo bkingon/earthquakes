@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   def index
-    earthquake_response = query_earthquake_api(params)
+    earthquake_response = query_earthquake_api(permitted_params)
     json_earthquakes = evaluate_response(earthquake_response)
 
     @map_markers_hash = MapMarkers.new(json_earthquakes).call
@@ -28,5 +28,9 @@ class DashboardController < ApplicationController
   def query_earthquake_api(query_params)
     @filtered_params = DashboardIndexParams.parse(query_params)
     EarthquakeQuery.new(@filtered_params).call
+  end
+
+  def permitted_params
+    params.slice(:filtered_params).permit!.to_h
   end
 end

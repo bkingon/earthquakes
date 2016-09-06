@@ -12,6 +12,5 @@ Bundler.require(*Rails.groups)
 
 module EarthquakesHistory
   class Application < Rails::Application
-    config.autoload_paths << Rails.root.join('interactions')
   end
 end

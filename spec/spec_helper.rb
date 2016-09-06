@@ -4,6 +4,8 @@ require 'simplecov'
 # require 'capybara/webkit/matchers'
 # Capybara.javascript_driver = :webkit
 
+require_relative 'fixtures/all'
+
 Dotenv.load
 
 # Config docs: http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
