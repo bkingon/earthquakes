@@ -1,4 +1,3 @@
-console.log('here I am');
 (function() {
   this.Gmaps = {
     build: function(type, options) {
