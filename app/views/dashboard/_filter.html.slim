@@ -1,15 +1,15 @@
 = form_for 'filtered_params', method: :get, html: { id: :filter_params } do |f|
   .medium-3.columns
     = label_tag :starttime, 'Start Date'
-    = f.date_field :starttime, value: @filtered_params[:starttime]
+    = f.date_field :starttime, value: @filtered_params.start_time
   .medium-3.columns
     = label_tag :endtime, 'End Date'
-    = f.date_field :endtime, value: @filtered_params[:endtime]
+    = f.date_field :endtime, value: @filtered_params.end_time
   .medium-3.columns
     = label_tag :minmagnitude, 'Minimum Magnitude'
-    = f.text_field :minmagnitude, value: @filtered_params[:minmagnitude]
+    = f.text_field :minmagnitude, value: @filtered_params.min_magnitude
   .medium-3.columns
-  
+
     .form-actions
       .row style='padding-top:13px'
         .large-8.columns
