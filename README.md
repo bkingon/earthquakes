@@ -3,7 +3,7 @@
 Have you ever wondered where the nearest seismic activity was?
 Well, this app allows the user to query the USGS Earthquakes database. The results are then placed into  Google Maps view, and markers are placed to identify the locations of where earthquakes have taken place.
 
-![Earthquake](https://giphy.com/gifs/pugatory-01x03-3o85xoKJdWyZ35P6OQ)
+![Earthquake](https://media.giphy.com/media/3o85xoKJdWyZ35P6OQ/giphy.gif)
 
 Demo App: https://earthquakes-history.herokuapp.com
 
