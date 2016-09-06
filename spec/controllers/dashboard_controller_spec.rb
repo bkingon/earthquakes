@@ -40,7 +40,7 @@ RSpec.describe DashboardController, type: :controller do
     end
 
     it 'sets the error message if the query returns a bad response' do
-      args = DashboardIndexParams.parse({ filtered_params: { starttime: '2016-08-01', endtime: '2016-09-03', minmagnitude: "7" } })
+      args = DashboardIndexParams.parse({ filtered_params: { starttime: '2016-08-01', endtime: '2016-09-03', minmagnitude: "7" } }.deep_stringify_keys)
       expect(EarthquakeQuery).to receive(:new).with(args).and_return(earthquake_query)
       expect(earthquake_query).to receive(:call).and_return(Fixtures.bad_response_query)
 
