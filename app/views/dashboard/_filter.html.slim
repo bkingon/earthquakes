@@ -7,7 +7,7 @@
     = f.date_field :endtime, value: @filtered_params.end_time
   .medium-3.columns
     = label_tag :minmagnitude, 'Minimum Magnitude'
-    = f.text_field :minmagnitude, value: @filtered_params.min_magnitude
+    = f.number_field :minmagnitude, min: '0', max: '9', value: @filtered_params.min_magnitude
   .medium-3.columns
 
     .form-actions
