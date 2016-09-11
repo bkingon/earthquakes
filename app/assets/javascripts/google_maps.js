@@ -26,3 +26,11 @@ function createSidebar(json_array){
     bindLiToMarker($li, json.marker);
   });
 };
+
+function setZoomLevelOfMap(handler, arrayLength){
+  if (arrayLength > 1) {
+    handler.fitMapToBounds();
+  } else {
+    handler.getMap().setZoom(3);
+  }
+};
